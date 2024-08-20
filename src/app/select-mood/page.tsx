@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { MoodImage } from '../../types';
+
 import image_1 from '../../data/1.png';
 import image_2 from '../../data/2.png';
 import image_3 from '../../data/3.png';
@@ -25,7 +26,6 @@ const SelectMood = () => {
   const price = searchParams.get('price');
   const [selectedMoods, setSelectedMoods] = useState<number[]>([]);
 
-  console.log(selectedMoods);
   const toggleMood = (id: number) => {
     setSelectedMoods((prev) =>
       prev.includes(id)
