@@ -37,6 +37,6 @@ module.exports = {
       },
     ],
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'react-hooks/exhaustive-deps': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 };
