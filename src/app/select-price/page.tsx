@@ -20,10 +20,12 @@ const SelectPrice = () => {
         value={priceRange}
         onChange={(values) => setPriceRange(values as [number, number])}
       />
+
       <p className="body-2 mt-4 mb-8">
         {priceRange[0].toLocaleString()}만원 - {priceRange[1].toLocaleString()}
         만원
       </p>
+
       <Link
         href={`/select-mood?type=${type}&price=${priceRange[0]}-${priceRange[1]}`}
         className="btn-primary font-bold"

@@ -26,6 +26,7 @@ const SelectMood = () => {
     <div className="flex flex-col items-center p-4">
       <h2 className="title-1">마음에 드는 무드 사진을 선택해주세요</h2>
       <p className="body-3 mb-8">(1~3개 선택 가능)</p>
+
       <div className="grid grid-cols-2 gap-2 mb-8">
         {moodImages_mu.map((image) => (
           <div
@@ -45,6 +46,7 @@ const SelectMood = () => {
           </div>
         ))}
       </div>
+
       <Link
         href={{
           pathname: '/photographer',
