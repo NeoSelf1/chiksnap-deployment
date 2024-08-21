@@ -4,32 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { MdCheck } from 'react-icons/md';
-import { SnapType } from '@/types';
-
-import image_11 from '../../data/11.png';
-import image_12 from '../../data/12.png';
-import image_13 from '../../data/13.png';
-
-const snapTypes: SnapType[] = [
-  {
-    id: 'personal',
-    title: '개인 스냅',
-    description: '개인 화보, 프로필 사진 등 단독 촬영',
-    image: image_11,
-  },
-  {
-    id: 'couple',
-    title: '커플 / 우정 스냅',
-    description: '커플(2인) 혹은 친구들(2인 이상) 촬영',
-    image: image_12,
-  },
-  {
-    id: 'wedding',
-    title: '결혼 스냅',
-    description: '데이트 스냅, 본식 스냅 등 웨딩 촬영',
-    image: image_13,
-  },
-];
+import { snapTypes } from '@/data/database';
 
 const SelectType = () => {
   const [selectedType, setSelectedType] = useState<string | null>(null);

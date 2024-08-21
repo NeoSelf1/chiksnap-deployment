@@ -1,54 +1,10 @@
-// app/recommended-photographers/page.tsx
 'use client';
 
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-import image_1 from '../../data/1.png';
-import image_2 from '../../data/2.png';
-import image_3 from '../../data/3.png';
-import image_4 from '../../data/4.png';
 import { useSearchParams } from 'next/navigation';
-
-interface Photographer {
-  id: number;
-  name: string;
-  instagramId: string;
-  snapType: string;
-  profileImage: any;
-}
-
-const dummyPhotographers: Photographer[] = [
-  {
-    id: 1,
-    name: '김포토',
-    instagramId: '@CHIK_1',
-    snapType: '스냅픽',
-    profileImage: image_1,
-  },
-  {
-    id: 2,
-    name: '이스냅',
-    instagramId: '@CHIK_1',
-    snapType: '스냅픽',
-    profileImage: image_2,
-  },
-  {
-    id: 3,
-    name: '박사진',
-    instagramId: '@CHIK_1',
-    snapType: '스냅픽',
-    profileImage: image_3,
-  },
-  {
-    id: 4,
-    name: '정스튜디오',
-    instagramId: '@CHIK_1',
-    snapType: '스냅픽',
-    profileImage: image_4,
-  },
-];
+import { photographers_mu } from '@/data/database';
 
 const RecommendedPhotographers = () => {
   const searchParams = useSearchParams();
@@ -64,7 +20,7 @@ const RecommendedPhotographers = () => {
         칙스냅에서 추천드리는 작가에요!
       </h1>
       <div className="grid grid-cols-2 gap-4">
-        {dummyPhotographers.map((photographer) => (
+        {photographers_mu.map((photographer) => (
           <Link
             key={photographer.id}
             href={`/photographer/${photographer.id}`}
@@ -72,7 +28,7 @@ const RecommendedPhotographers = () => {
           >
             <div className="relative aspect-square w-full mb-2 overflow-hidden rounded-lg">
               <Image
-                src={photographer.profileImage}
+                src={photographer.profileImg}
                 alt={photographer.name}
                 layout="fill"
                 objectFit="cover"

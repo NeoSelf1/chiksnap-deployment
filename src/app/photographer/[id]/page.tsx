@@ -1,30 +1,15 @@
+import { photographers_mu } from '@/data/database';
 import Image from 'next/image';
-import { PhotographerDetails } from '@/types';
-
-import image_1 from '@/data/1.png';
-import image_2 from '@/data/2.png';
-import image_3 from '@/data/3.png';
-import image_4 from '@/data/4.png';
-
-const dummyPhotographerDetails: PhotographerDetails = {
-  id: 1,
-  name: '김포토',
-  instagramId: '@kim_photo',
-  profileImage: '/photographer1.jpg',
-  workImages: [image_1, image_2, image_3, image_4],
-  services: ['개인 스냅', '커플 스냅', '웨딩 스냅'],
-};
-
 const PhotographerDetailsPage = ({ params }: { params: { id: string } }) => {
   // In a real application, you would fetch the photographer's details based on the id
-  const photographer = dummyPhotographerDetails;
+  const photographer = photographers_mu[parseInt(params.id)];
 
   return (
     <div className="flex flex-col items-center p-4">
       <div className="w-full max-w-md">
         <div className="flex items-center mb-6">
           <Image
-            src={photographer.profileImage}
+            src={photographer.profileImg}
             alt={photographer.name}
             width={80}
             height={80}
@@ -36,7 +21,7 @@ const PhotographerDetailsPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div className="grid grid-cols-2 gap-4 mb-6">
-          {photographer.workImages.map((image, index) => (
+          {photographer.workImages?.map((image, index) => (
             <Image
               key={index}
               src={image}

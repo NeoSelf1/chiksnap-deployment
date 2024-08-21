@@ -8,11 +8,8 @@ export interface Photographer {
   id: number;
   name: string;
   instagramId: string;
-  profileImage: string;
-}
-
-export interface PhotographerDetails extends Photographer {
-  workImages: any[];
+  profileImg: any;
+  workImages: any[] | null;
   services: string[];
 }
 
