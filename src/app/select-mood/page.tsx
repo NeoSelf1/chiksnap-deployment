@@ -30,7 +30,7 @@ const SelectMood = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] h-screen pb-[10rem]">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
@@ -49,7 +49,7 @@ const SelectMood = () => {
       <h3 className="body-3 text-gray-500 mb-[1.75rem]">
         3장의 사진을 선택해주세요 (수정예정)
       </h3>
-      <div className="flex flex-row space-x-1">
+      <div className="flex flex-row space-x-1 pb-[5rem]">
         <MoodImageGroup
           images={group1}
           selectedMoods={selectedMoods}
@@ -67,21 +67,23 @@ const SelectMood = () => {
         />
       </div>
 
-      <div className="flex">
-        <Link
-          href={{
-            pathname: '/photographer',
-            query: { type, moods: selectedMoods.join(',') },
-          }}
-          aria-disabled={selectedMoods.length !== 3}
-          className={
-            selectedMoods.length === 3
-              ? 'btn-primary body-3 mb-[1rem]'
-              : 'btn-default body-3 pointer-events-none mb-[1rem]'
-          }
-        >
-          다음
-        </Link>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4">
+        <div className="flex w-full max-w-md mx-4">
+          <Link
+            href={{
+              pathname: '/photographer',
+              query: { type, moods: selectedMoods.join(',') },
+            }}
+            aria-disabled={selectedMoods.length !== 3}
+            className={
+              selectedMoods.length === 3
+                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
+                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
+            }
+          >
+            다음
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const RecommendedPhotographers = () => {
   }
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem]">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
@@ -54,7 +54,7 @@ const RecommendedPhotographers = () => {
         작가님이에요. 자세히 보기를 통해 작가님의 정보를 확인하고 그리던 사진을
         촬영해요
       </h3>
-      <div className="flex flex-col gap-[0.62rem]">
+      <div className="flex flex-col gap-[0.62rem] mb-[5rem]">
         {selectedPhotographers.map((photographer) => (
           <div
             key={photographer.id}
@@ -113,13 +113,16 @@ const RecommendedPhotographers = () => {
           </div>
         ))}
       </div>
-      <div className="flex">
-        <Link
-          href={'/request-custom'}
-          className={'btn-default body-3 mt-[2rem] mb-[1rem]'}
-        >
-          맞춤형 작가 요청하기
-        </Link>
+
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4 cursor-pointer">
+        <div className="flex w-full max-w-md mx-4">
+          <Link
+            href={'/request-custom'}
+            className={'btn-default body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'}
+          >
+            맞춤형 작가 요청하기
+          </Link>
+        </div>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import ArrowBack from '@/data/arrowLeft.svg';
 import { useRouter } from 'next/navigation';
@@ -13,16 +12,22 @@ const RequestCustom = () => {
   };
 
   const [text, setText] = useState<string>('');
+  const [phoneNumber, setPhoneNumber] = useState<string>('');
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
+  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPhoneNumber(e.target.value);
+  };
+
   const isOverLimit = text.length > 600;
   const isTextEntered = text.length > 0;
+  const isPhoneNumberEntered = phoneNumber.trim().length > 0;
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem]">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
@@ -44,6 +49,8 @@ const RequestCustom = () => {
           <input
             type="text"
             placeholder="XXX - XXXX - XXXX"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
             className="w-full h-[3.125rem] px-[0.875rem] bg-gray-50 rounded-lg body-1 placeholder-gray-300
             hover:bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:ring-0 focus:outline-none
             border border-transparent transition-colors duration-200
@@ -80,18 +87,18 @@ const RequestCustom = () => {
           </div>
         </div>
       </div>
-      <div className="flex">
-        <Link
-          href={'/'}
-          //   href={{
-          //     pathname: '/photographer',
-          //     query: { type, moods: selectedMoods.join(',') },
-          //   }}
-          //   aria-disabled={selectedMoods.length !== 3}
-          className={'btn-primary body-3 mb-[1rem]'}
-        >
-          요청하기
-        </Link>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4 cursor-pointer">
+        <div className="flex w-full max-w-md mx-4">
+          <button
+            className={`body-3 w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+              isPhoneNumberEntered
+                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
+                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
+            }`}
+          >
+            요청하기
+          </button>
+        </div>
       </div>
     </div>
   );
