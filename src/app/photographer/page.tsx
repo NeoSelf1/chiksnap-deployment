@@ -58,7 +58,7 @@ const RecommendedPhotographers = () => {
         {selectedPhotographers.map((photographer) => (
           <div
             key={photographer.id}
-            className="flex flex-col w-full bg-gray-50 p-[0.75rem] rounded-[0.5rem]"
+            className="flex flex-col w-full bg-gray-50 hover:bg-gray-100 p-[0.75rem] rounded-[0.5rem] cursor-pointer"
           >
             <a href={`https://www.instagram.com/${photographer.instagramId}/`}>
               <div className="flex w-full mb-[1rem] rounded-[0.25rem]">
