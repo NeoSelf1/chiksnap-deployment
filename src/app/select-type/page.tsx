@@ -28,7 +28,7 @@ const SelectType = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen lg:mb-0 md:h-screen md:mb-0 sm:h-screen sm:mb-0 mb-[5rem]">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
