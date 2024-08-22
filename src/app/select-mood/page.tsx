@@ -4,9 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { moodImages_mu } from '@/data/database';
+import { group1, group2, group3 } from '@/data/database';
 import ArrowBack from '@/data/arrowLeft.svg';
 import IsChecked from '@/data/whiteCheck.svg';
+import MoodImageGroup from '@/components/MoodImageGroup';
 
 const SelectMood = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const SelectMood = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen h-screen">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
@@ -48,29 +49,22 @@ const SelectMood = () => {
       <h3 className="body-3 text-gray-500 mb-[1.75rem]">
         3장의 사진을 선택해주세요 (수정예정)
       </h3>
-      <div className="grid grid-cols-3 gap-2 mb-8">
-        {moodImages_mu.map((image) => (
-          <div
-            key={image.id}
-            className={`relative cursor-pointer rounded-md overflow-hidden`}
-            onClick={() => toggleMood(image.id)}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              layout="responsive"
-              width={220}
-              height={220}
-              objectFit="cover"
-              className="w-full"
-            />
-            {selectedMoods.includes(image.id) && (
-              <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
-                <Image src={IsChecked} alt={'checked'} width={20} height={20} />
-              </div>
-            )}
-          </div>
-        ))}
+      <div className="flex flex-row space-x-1">
+        <MoodImageGroup
+          images={group1}
+          selectedMoods={selectedMoods}
+          toggleMood={toggleMood}
+        />
+        <MoodImageGroup
+          images={group2}
+          selectedMoods={selectedMoods}
+          toggleMood={toggleMood}
+        />
+        <MoodImageGroup
+          images={group3}
+          selectedMoods={selectedMoods}
+          toggleMood={toggleMood}
+        />
       </div>
 
       <div className="flex">
