@@ -28,7 +28,7 @@ const SelectType = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
+    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] mb-[5rem]">
       <div className="cursor-pointer" onClick={backFunction}>
         <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
           <Image src={ArrowBack} alt="Back" objectFit="cover" />
@@ -89,21 +89,23 @@ const SelectType = () => {
           </div>
         ))}
       </div>
-      <div className="flex">
-        <Link
-          href={
-            selectedTypes.length > 0
-              ? `/select-mood?type=${selectedTypes.join(',')}`
-              : '#'
-          }
-          className={
-            selectedTypes.length > 0
-              ? 'btn-primary body-3 fixed bottom-[1rem] w-[calc(100%-2rem)] lg:w-full lg:absolute lg:bottom-[1rem] md:w-full md:absolute md:bottom-[1rem] sm:w-full sm:absolute sm:bottom-[1rem]'
-              : 'btn-default body-3 pointer-events-none fixed bottom-[1rem] w-[calc(100%-2rem)] lg:w-full lg:absolute lg:bottom-[1rem] md:w-full md:absolute md:bottom-[1rem] sm:w-full sm:absolute sm:bottom-[1rem]'
-          }
-        >
-          다음
-        </Link>
+      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4">
+        <div className="flex w-full max-w-md mx-4 ">
+          <Link
+            href={
+              selectedTypes.length > 0
+                ? `/select-mood?type=${selectedTypes.join(',')}`
+                : '#'
+            }
+            className={
+              selectedTypes.length > 0
+                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
+                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
+            }
+          >
+            다음
+          </Link>
+        </div>
       </div>
     </div>
   );

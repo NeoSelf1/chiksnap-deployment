@@ -150,3 +150,7 @@ export const moodImages_mu: MoodImage[] = [
   { id: 11, src: image_1, alt: 'Mood 5' },
   { id: 12, src: image_2, alt: 'Mood 6' },
 ];
+
+export const group1 = moodImages_mu.slice(0, 4);
+export const group2 = moodImages_mu.slice(4, 8);
+export const group3 = moodImages_mu.slice(8, 12);
