@@ -9,8 +9,9 @@ export interface Photographer {
   name: string;
   instagramId: string;
   profileImg: any;
-  workImages: any[] | null;
+  workImages: string[];
   services: string[];
+  price: string;
 }
 
 export interface SnapType {

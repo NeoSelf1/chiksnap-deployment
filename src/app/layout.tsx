@@ -23,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.className} bg-gray-50`}>
-        <Header />
         <div className="max-w-md mx-auto bg-white min-h-screen flex flex-col">
+          <Header />
           <main className="flex-grow overflow-y-auto">{children}</main>
         </div>
       </body>

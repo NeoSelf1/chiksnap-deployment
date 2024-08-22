@@ -7,7 +7,7 @@
     @apply font-semibold text-[34px] leading-[42px] tracking-[0px];
   }
   .title-1 {
-    @apply font-bold text-[20px] leading-[32px] tracking-[-1.5px];
+    @apply font-bold text-[20px] leading-[32px] tracking-[0px];
   }
   .title-2 {
     @apply font-semibold text-[18px] leading-[28px] tracking-[0.1px];
@@ -35,5 +35,8 @@
   }
   .btn-selected {
     @apply btn bg-gray-800 text-white;
+  }
+  .placeholder-gray-300::placeholder {
+    color: #c1cbd8;
   }
 }

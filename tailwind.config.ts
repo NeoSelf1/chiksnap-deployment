@@ -22,6 +22,9 @@ module.exports = {
         },
         black: '#000000',
         white: '#FFFFFF',
+        red: {
+          100: '#FF9C9C',
+        },
       },
       fontFamily: {
         sans: ['Pretendard', 'sans-serif'],
