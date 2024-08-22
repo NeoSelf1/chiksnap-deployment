@@ -1,17 +1,29 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { photographers_mu } from '@/data/database';
 import ArrowBack from '@/data/arrowLeft.svg';
+import Loading from '@/components/Loading';
 
 const RecommendedPhotographers = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2500); // 2.5초
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const backFunction = () => {
     router.back();
   };
+
   const searchParams = useSearchParams();
   const type = searchParams.get('type');
   const moods = searchParams.get('moods');
@@ -22,6 +34,10 @@ const RecommendedPhotographers = () => {
   const selectedPhotographers = [...photographers_mu]
     .sort(() => Math.random() - 0.5)
     .slice(0, 3);
+
+  if (isLoading) {
+    return <Loading />; // 로딩 중일 때 로딩 컴포넌트 표시
+  }
 
   return (
     <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] lg:h-screen md:h-screen sm:h-screen">
