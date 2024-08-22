@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import BackgroundImage from '../data/unsplash.png';
+import BackgroundImage from '@/data/unsplash.png';
 
 const Home = () => {
   return (
