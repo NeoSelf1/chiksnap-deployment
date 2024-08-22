@@ -50,9 +50,9 @@ const RecommendedPhotographers = () => {
         칙스냅에서 추천드리는 작가예요!
       </h2>
       <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        아래 작가분들은 여러분의 선택을 기반으로 칙스냅에서 추천드리는
-        작가님이에요. 자세히 보기를 통해 작가님의 정보를 확인하고 그리던 사진을
-        촬영해요
+        선택하신 분위기를 기반으로
+        <br />
+        칙스냅에서 추천드리는 작가님들이에요.
       </h3>
       <div className="flex flex-col gap-[0.62rem] mb-[5rem]">
         {selectedPhotographers.map((photographer) => (
@@ -61,18 +61,18 @@ const RecommendedPhotographers = () => {
             className="flex flex-col w-full bg-gray-50 hover:bg-gray-100 p-[0.75rem] rounded-[0.5rem] cursor-pointer"
           >
             <a href={`https://www.instagram.com/${photographer.instagramId}/`}>
-              <div className="flex w-full mb-[1rem] rounded-[0.25rem]">
-                <div className="flex relative w-[3.38rem] h-[3.38rem] mr-[0.62rem]">
-                  <Image
-                    src={photographer.profileImg}
-                    alt={photographer.name}
-                    width={54}
-                    height={54}
-                    objectFit="cover"
-                    className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
-                  />
-                </div>
-                <div className="flex flex-col w-full justify-center gap-[0.37rem]">
+              <div className="flex flex-col w-full justify-center">
+                <div className="flex w-full mb-[0.63rem]">
+                  <div className="flex relative w-[2.25rem] h-[2.25rem] mr-[0.62rem] rounded-[0.25rem]">
+                    <Image
+                      src={photographer.profileImg}
+                      alt={photographer.name}
+                      width={54}
+                      height={54}
+                      objectFit="cover"
+                      className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
+                    />
+                  </div>
                   <div className="flex items-center gap-[0.5rem]">
                     <span className="body-1 text-gray-900">
                       {photographer.name}
@@ -81,19 +81,19 @@ const RecommendedPhotographers = () => {
                       {`@${photographer.instagramId}`}
                     </span>
                   </div>
-                  <div className="flex items-center gap-[0.5rem]">
-                    <div className="caption px-[0.5rem] py-[0.25rem] bg-gray-200 rounded-[0.25rem]">
-                      {photographer.price}
-                    </div>
-                    {photographer.services.map((value, index) => (
-                      <div
-                        key={index}
-                        className="caption px-[0.5rem] py-[0.25rem] bg-white rounded-[0.25rem]"
-                      >
-                        {value}
-                      </div>
-                    ))}
+                </div>
+                <div className="flex items-center gap-[0.25rem] mb-[0.62rem]">
+                  <div className="caption px-[0.5rem] py-[0.25rem] bg-gray-200 rounded-[0.25rem]">
+                    {photographer.price}
                   </div>
+                  {photographer.services.map((value, index) => (
+                    <div
+                      key={index}
+                      className="caption px-[0.5rem] py-[0.25rem] bg-white rounded-[0.25rem]"
+                    >
+                      {value}
+                    </div>
+                  ))}
                 </div>
               </div>
               <div className="flex gap-[0.5rem]">

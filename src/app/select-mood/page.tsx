@@ -42,12 +42,12 @@ const SelectMood = () => {
         </span>
       </div>
       <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        아래 사진 중, 찍고 싶은 분위기의
-        <br />
-        스냅 사진을 골라볼까요?
+        마음에 드는 스냅 3장을 골라주세요.
       </h2>
       <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        3장의 사진을 선택해주세요 (수정예정)
+        선택하신 스냅의 분위기와 유사한 스타일의
+        <br />
+        작가님을 추천해드릴게요.
       </h3>
       <div className="flex flex-row space-x-1 pb-[5rem]">
         <MoodImageGroup

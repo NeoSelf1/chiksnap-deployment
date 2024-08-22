@@ -41,7 +41,7 @@ const RequestCustom = () => {
       alert('요청이 성공적으로 전송되었습니다.');
       router.push('/');
     } catch (error) {
-      console.error('실패: ', error);
+      console.error('실패: ', error);
       alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
     } finally {
       setLoading(false);
@@ -115,13 +115,13 @@ const RequestCustom = () => {
           <button
             onClick={handleSubmit}
             disabled={!isPhoneNumberEntered || loading}
-            className={`body-3 w-full text-center py-3 rounded-lg transition-colors duration-200 ${
+            className={`body-3 w-full text-center py-3 rounded-lg transition-colors duration-200 lg:mx-4 md:mx-4 sm:mx-4 ${
               isPhoneNumberEntered
                 ? 'btn-primary'
                 : 'btn-default pointer-events-none'
             } ${loading ? 'opacity-50' : ''}`}
           >
-            {/* {loading ? '요청 중...' : '요청하기'} */} 요청하기
+            요청하기
           </button>
         </div>
       </div>
