@@ -30,25 +30,14 @@ const SelectMood = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] h-screen pb-[10rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
+    <div className="flex flex-col">
+      <div className="fixed w-full bg-white px-4 pb-2 z-20 pt-2">
+        <div className="flex flex-row justify-between items-center">
+          <h2 className="title-1">마음에 드는 스냅 3장을 골라주세요.</h2>
+          <span className="body-1">
+            2<span className="text-gray-400">/2</span>
+          </span>
         </div>
-      </div>
-      <div className="flex h-[1.375rem] justify-end">
-        <span className="caption">
-          2<span className="text-gray-400"> / 2</span>
-        </span>
-      </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        마음에 드는 스냅 3장을 골라주세요.
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        선택하신 스냅의 분위기와 유사한 스타일의
-        <br />
-        작가님을 추천해드릴게요.
-      </h3>
       <div className="flex flex-row space-x-1 pb-[5rem]">
         <MoodImageGroup
           images={group1}
@@ -65,6 +54,11 @@ const SelectMood = () => {
           selectedMoods={selectedMoods}
           toggleMood={toggleMood}
         />
+
+        <h3 className="body-3 text-gray-500 mt-1 whitespace-pre-line">
+          {`선택하신 스냅의 분위기와 유사한 스타일의 
+작가님을 추천해드릴게요.`}
+        </h3>
       </div>
 
         </div>

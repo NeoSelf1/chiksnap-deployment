@@ -40,19 +40,13 @@ const RecommendedPhotographers = () => {
   }
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
-        </div>
-      </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        칙스냅에서 추천드리는 작가예요!
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        선택하신 분위기를 기반으로
-        <br />
-        칙스냅에서 추천드리는 작가님들이에요.
+    <div className="relative flex flex-col mx-4 mb-24">
+      <h2 className="title-1 mt-2">칙스냅에서 추천드리는 작가예요!</h2>
+
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 text-balance">
+        아래 작가분들은 여러분의 선택을 기반으로 칙스냅에서 추천드리는
+        작가님이에요. 자세히 보기를 통해 작가님의 정보를 확인하고 그리던 사진을
+        촬영해요
       </h3>
       <div className="flex flex-col gap-[0.62rem] mb-[5rem]">
         {selectedPhotographers.map((photographer) => (

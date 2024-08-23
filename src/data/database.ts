@@ -11,19 +11,19 @@ import image_4 from '@/data/4.png';
 export const snapTypes: SnapType[] = [
   {
     id: 'personal',
-    title: '개인 스냅',
+    title: '개인',
     description: '화보, 프로필 사진 촬영',
     image: image_11,
   },
   {
     id: 'couple',
-    title: '커플 / 우정 스냅',
+    title: '커플 / 우정',
     description: '2인 이상 촬영',
     image: image_12,
   },
   {
     id: 'wedding',
-    title: '결혼 스냅',
+    title: '결혼',
     description: '웨딩, 본식 등 촬영',
     image: image_13,
   },

@@ -28,22 +28,17 @@ const SelectType = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] mb-[5rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
-        </div>
-      </div>
-      <div className="flex h-[1.375rem] justify-end">
-        <span className="caption">
-          1<span className="text-gray-400"> / 2</span>
+    <div className="relative flex flex-col mx-4 mb-24">
+      <div className="flex flex-row justify-between items-center mt-2">
+        <h2 className="title-1">스냅 종류를 선택해주세요.</h2>
+        <span className="body-1">
+          1<span className="text-gray-400">/2</span>
         </span>
       </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        원하는 스냅 종류를 선택해볼까요?
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        복수 선택이 가능해요
+
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+        {`찍고 싶은 스냅사진의 종류를 골라주세요.
+        종류는 중복으로 선택할 수 있어요.`}
       </h3>
       <div className="space-y-[1rem] w-full">
         {snapTypes.map((type) => (

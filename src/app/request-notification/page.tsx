@@ -22,22 +22,21 @@ const RequestNotification = () => {
   const isPhoneNumberEntered = phoneNumber.trim().length > 0;
 
   return (
-    <div className="relative flex flex-col mx-[1rem] pt-[3.5rem] h-screen">
-      <div className="flex justify-end cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={Close} alt="Back" objectFit="cover" />
-        </div>
+    <div className="relative flex flex-col mx-4 mb-24">
+      <div className="py-3 flex justify-end" onClick={() => router.back()}>
+        <Image
+          src={Close}
+          alt="Back"
+          className="flex w-[1.5rem] h-[1.5rem]"
+          style={{ objectFit: 'cover' }}
+        />
       </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        칙스냅이 오픈되면, 알려드릴게요!
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        안녕하세요, 순간을 Chik다 chiksnap입니다.
-        <br />
-        Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 예정에
-        있습니다.
-        <br />
-        오픈 연락을 희망하신다면 아래 연락처를 남겨주세요!
+      <h2 className="title-1 mt-2">칙스냅이 오픈되면, 알려드릴게요!</h2>
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+        {`안녕하세요, 순간을 Chik다. chiksnap입니다.
+Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 예정에 
+있습니다.
+오픈 연락을 희망하신다면 아래 연락처를 남겨주세요 !`}
       </h3>
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">

@@ -49,18 +49,12 @@ const RequestCustom = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
-        </div>
-      </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        맞춤형 작가 요청하기
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요. 약 1~3일
-        정도 소요될 수 있어요.
+    <div className="relative flex flex-col mx-4 mb-24">
+      <h2 className="title-1 mt-2">맞춤형 작가 요청해보세요.</h2>
+
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+        {`칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요.
+        약 1~3일 정도 소요될 수 있어요!`}
       </h3>
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">
@@ -84,7 +78,7 @@ const RequestCustom = () => {
         <h2 className="body-1">희망하는 작가님 스타일 (분위기, 종류 등)</h2>
         <div className="mb-[1.75rem]">
           <textarea
-            placeholder="예) 따뜻한 분위기의 숲속에서 찍는 스타일, "
+            placeholder="예) 따뜻한 색감, 필름카메라 느낌"
             className={`flex w-full min-h-[13rem] p-[0.875rem] rounded-lg body-3 placeholder-gray-300 resize-none  bg-gray-50
             ${
               isOverLimit
