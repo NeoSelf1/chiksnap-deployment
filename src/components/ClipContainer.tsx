@@ -20,7 +20,7 @@ const ClipContainer = ({ children }: any) => {
       : 'h-[7rem]';
 
   return (
-    <div className="max-w-md mx-auto flex flex-col">
+    <div className="max-w-md mx-auto flex flex-col min-h-screen bg-white">
       <header
         className={`fixed top-0 left-0 right-0 max-w-md mx-auto w-full z-50`}
       >

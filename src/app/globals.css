@@ -28,7 +28,7 @@
     @apply h-[3rem] px-[1.5rem] py-[0.75rem] rounded-lg transition-colors duration-200 w-full text-center font-medium;
   }
   .btn-container {
-    @apply fixed bottom-0 left-0 right-0 flex justify-center bg-white p-4;
+    @apply fixed bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center bg-white p-4 max-w-md w-full;
   }
   .btn-primary {
     @apply btn bg-gray-800 text-white hover:bg-gray-700;

@@ -23,7 +23,7 @@ const SelectMood = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="fixed w-full bg-white px-4 pb-2 z-20 pt-2">
+      <div className="fixed w-[28rem] bg-white px-4 pb-2 z-20 pt-2">
         <div className="flex flex-row justify-between items-center">
           <h2 className="title-1">마음에 드는 스냅 3장을 골라주세요.</h2>
           <span className="body-1">
