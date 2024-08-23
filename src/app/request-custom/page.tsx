@@ -110,20 +110,19 @@ const RequestCustom = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4 cursor-pointer">
-        <div className="flex w-full max-w-md mx-4">
-          <button
-            onClick={handleSubmit}
-            disabled={!isPhoneNumberEntered || loading}
-            className={`body-3 w-full text-center py-3 rounded-lg transition-colors duration-200 lg:mx-4 md:mx-4 sm:mx-4 ${
-              isPhoneNumberEntered
-                ? 'btn-primary'
-                : 'btn-default pointer-events-none'
-            } ${loading ? 'opacity-50' : ''}`}
-          >
-            요청하기
-          </button>
-        </div>
+
+      <div className="btn-container">
+        <button
+          onClick={handleSubmit}
+          disabled={!isPhoneNumberEntered || !isTextEntered || loading}
+          className={
+            isPhoneNumberEntered && isTextEntered
+              ? 'btn-primary body-3 flex justify-center items-center'
+              : 'btn-default pointer-events-none body-3'
+          }
+        >
+          {loading ? <LoadingIndicator /> : '요청하기'}
+        </button>
       </div>
     </div>
   );

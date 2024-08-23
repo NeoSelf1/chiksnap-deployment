@@ -89,23 +89,22 @@ const SelectType = () => {
           </div>
         ))}
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4">
-        <div className="flex w-full max-w-md mx-4 ">
-          <Link
-            href={
-              selectedTypes.length > 0
-                ? `/select-mood?type=${selectedTypes.join(',')}`
-                : '#'
-            }
-            className={
-              selectedTypes.length > 0
-                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
-                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
-            }
-          >
-            다음
-          </Link>
-        </div>
+
+      <div className="btn-container">
+        <Link
+          href={
+            selectedTypes.length > 0
+              ? `/select-mood?type=${selectedTypes.join(',')}`
+              : '#'
+          }
+          className={
+            selectedTypes.length > 0
+              ? 'btn-primary body-3'
+              : 'btn-default body-3 pointer-events-none'
+          }
+        >
+          다음으로
+        </Link>
       </div>
     </div>
   );

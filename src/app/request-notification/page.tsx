@@ -57,27 +57,27 @@ const RequestNotification = () => {
           />
         </div>
       </div>
-      <div className="flex space-x-2 absolute bottom-[1rem] w-full">
-        <a href={`https://www.instagram.com/chik_snap/`} className="w-1/2">
-          <button className="btn-default flex justify-center items-center w-full body-3 rounded-lg gap-[0.25rem]">
-            <div className="flex w-[1.5rem] h-[1.5rem]">
-              <Image src={Instagram} alt="Instagram" objectFit="cover" />
-            </div>
-            칙스냅에 문의하기
-          </button>
-        </a>
-        <Link href="/" className="flex-grow">
-          <button
-            className={`body-3 w-full py-3 rounded-lg transition-colors duration-200 ${
-              isPhoneNumberEntered
-                ? 'btn-primary body-3 text-white'
-                : 'btn-default body-3 cursor-not-allowed'
-            }`}
-            disabled={!isPhoneNumberEntered}
-          >
-            신청하기
-          </button>
+      <div className="btn-container space-x-2">
+        <Link
+          target="_blank"
+          href={`https://www.instagram.com/chik_snap/`}
+          className="btn-default flex justify-center space-x-1"
+        >
+          <Image src={Instagram} width={24} alt="Instagram" objectFit="cover" />
+          <h1 className="body-3">칙스냅에 문의하기</h1>
         </Link>
+
+        <button
+          className={
+            isPhoneNumberEntered
+              ? 'btn-primary body-3 text-white flex justify-center items-center'
+              : 'btn-default body-3 cursor-not-allowed'
+          }
+          disabled={!isPhoneNumberEntered}
+          onClick={handleSubmit}
+        >
+          {loading ? <LoadingIndicator /> : '신청하기'}
+        </button>
       </div>
     </div>
   );

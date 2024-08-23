@@ -114,15 +114,13 @@ const RecommendedPhotographers = () => {
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4 cursor-pointer">
-        <div className="flex w-full max-w-md mx-4">
-          <Link
-            href={'/request-custom'}
-            className={'btn-default body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'}
-          >
-            맞춤형 작가 요청하기
-          </Link>
-        </div>
+      <div className="btn-container">
+        <Link
+          href={'/request-custom'}
+          className={'btn-default body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'}
+        >
+          마음에 드는 작가가 없으시다면?
+        </Link>
       </div>
     </div>
   );

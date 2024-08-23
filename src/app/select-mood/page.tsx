@@ -67,23 +67,24 @@ const SelectMood = () => {
         />
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4">
-        <div className="flex w-full max-w-md mx-4">
-          <Link
-            href={{
-              pathname: '/photographer',
-              query: { type, moods: selectedMoods.join(',') },
-            }}
-            aria-disabled={selectedMoods.length !== 3}
-            className={
-              selectedMoods.length === 3
-                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
-                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
-            }
-          >
-            다음
-          </Link>
         </div>
+      </div>
+
+      <div className="btn-container">
+        <Link
+          href={{
+            pathname: '/photographer',
+            query: { type, moods: selectedMoods.join(',') },
+          }}
+          aria-disabled={selectedMoods.length !== 3}
+          className={
+            selectedMoods.length === 3
+              ? 'btn-primary body-3 w-full'
+              : 'btn-default body-3 pointer-events-none w-full'
+          }
+        >
+          다음으로
+        </Link>
       </div>
     </div>
   );
