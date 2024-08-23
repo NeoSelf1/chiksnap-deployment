@@ -3,11 +3,13 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Close from '@/data/close.svg';
 import Instagram from '@/data/instagram.svg';
+import Close from '@/data/close.svg';
 import { useRouter } from 'next/navigation';
 import { handlePhoneNumberChange } from '@/lib/utils';
+import PopupWindow from '@/components/PopupWindow';
 import { submitForm } from '../api/apis';
+import { LoadingIndicator } from '@/lib/svgs';
 
 const RequestNotification = () => {
   const router = useRouter();
@@ -33,7 +35,10 @@ const RequestNotification = () => {
     }
   };
 
-  const isPhoneNumberEntered = phoneNumber.trim().length > 0;
+  const onClose = () => {
+    setIsModalOpen(false);
+    router.push('/');
+  };
 
   return (
     <div className="relative flex flex-col mx-4 mb-24">
@@ -93,6 +98,15 @@ Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 �
           {loading ? <LoadingIndicator /> : '신청하기'}
         </button>
       </div>
+
+      <PopupWindow
+        isOpen={isModalOpen}
+        onClose={onClose}
+        message={{
+          title: '오픈 알림 신청이 완료되었어요!',
+          body: `칙스냅이 출시되면, 바로 연락드릴게요.`,
+        }}
+      />
     </div>
   );
 };

@@ -3,7 +3,9 @@
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '../api/apis';
+import PopupWindow from '@/components/PopupWindow';
 import { handlePhoneNumberChange } from '@/lib/utils';
+import { LoadingIndicator } from '@/lib/svgs';
 
 const RequestCustom = () => {
   const router = useRouter();
@@ -11,32 +13,34 @@ const RequestCustom = () => {
   const [text, setText] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const isOverLimit = text.length > 600;
+  const isTextEntered = text.length > 0;
+  const isPhoneNumberEntered = phoneNumber.trim().length > 12;
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
-  const isTextEntered = text.length > 0;
-  const isPhoneNumberEntered = phoneNumber.trim().length > 0;
-
   const handleSubmit = async () => {
-    console.log(phoneNumber);
-    console.log(text);
     if (!isPhoneNumberEntered) return;
-
     setLoading(true);
 
     try {
       await submitForm({ phone_number: phoneNumber, prefer_style: text });
-
-      alert('요청이 성공적으로 전송되었습니다.');
-      router.push('/');
     } catch (error) {
       console.error('실패: ', error);
       alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
     } finally {
+      setIsModalOpen(true);
       setLoading(false);
     }
+  };
+
+  const onClose = () => {
+    setIsModalOpen(false);
+    router.push('/');
   };
 
   return (
@@ -47,6 +51,7 @@ const RequestCustom = () => {
         {`칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요.
         약 1~3일 정도 소요될 수 있어요!`}
       </h3>
+
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">
           <h2 className="body-1">전화번호</h2>
@@ -109,6 +114,16 @@ const RequestCustom = () => {
           {loading ? <LoadingIndicator /> : '요청하기'}
         </button>
       </div>
+
+      <PopupWindow
+        isOpen={isModalOpen}
+        onClose={onClose}
+        message={{
+          title: '작가 요청이 완료되었어요!',
+          body: `회원님만을 위한 맞춤형 작가를 찾아 연락드릴게요.
+조금만 기다려주세요.`,
+        }}
+      />
     </div>
   );
 };
