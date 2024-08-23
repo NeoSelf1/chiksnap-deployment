@@ -20,7 +20,7 @@ const Home = () => {
       <div className="relative z-20 h-full flex flex-col justify-between">
         <div className="pl-[1.25rem]">
           <h1 className="body-2 mt-[6.94rem] mb-[0.64rem] text-white">
-            순간을 chik다,
+            순간을 Chik다,
             <br />
             칙스냅
           </h1>
@@ -39,8 +39,9 @@ const Home = () => {
               어려우셨다면 저희가 찾아드릴게요!
             </p>
           </div>
+
           <Link href="/select-type" className="btn-default body-3">
-            원하는 사진작가 찾아보기
+            다음으로
           </Link>
         </div>
       </div>

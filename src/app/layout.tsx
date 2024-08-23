@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
-import Header from '@/components/Header';
+import ClipContainer from '@/components/ClipContainer';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -22,11 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.className} bg-gray-50`}>
-        <div className="max-w-md mx-auto bg-white min-h-screen flex flex-col">
-          <Header />
+      <body className={`${pretendard.className} bg-gray-100 overflow-x-hidden`}>
+        <ClipContainer>
           <main className="flex-grow overflow-y-auto">{children}</main>
-        </div>
+        </ClipContainer>
       </body>
     </html>
   );
