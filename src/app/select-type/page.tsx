@@ -4,17 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { snapTypes } from '@/data/database';
-import ArrowBack from '@/data/arrowLeft.svg';
 import IsNotChecked from '@/data/grayCheck.svg';
 import IsChecked from '@/data/whiteCheck.svg';
-import { useRouter } from 'next/navigation';
 
 const SelectType = () => {
-  const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
-
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const handleSelectType = (typeId: string) => {
@@ -28,24 +21,20 @@ const SelectType = () => {
   };
 
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem] mb-[5rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
-        </div>
-      </div>
-      <div className="flex h-[1.375rem] justify-end">
-        <span className="caption">
-          1<span className="text-gray-400"> / 2</span>
+    <div className="relative flex flex-col mx-4 mb-24">
+      <div className="flex flex-row justify-between items-center mt-2">
+        <h2 className="title-1">스냅 종류를 선택해주세요.</h2>
+        <span className="body-1">
+          1<span className="text-gray-400">/2</span>
         </span>
       </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        원하는 스냅 종류를 선택해볼까요?
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        복수 선택이 가능해요
+
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+        {`찍고 싶은 스냅사진의 종류를 골라주세요.
+        종류는 중복으로 선택할 수 있어요.`}
       </h3>
-      <div className="space-y-[1rem] w-full">
+
+      <div className="space-y-3 w-full">
         {snapTypes.map((type) => (
           <div
             key={type.id}
@@ -61,51 +50,44 @@ const SelectType = () => {
               height={200}
               className="mr-[0.25rem]"
             />
+
             <div className="p-[1rem] flex flex-row justify-between w-full place-items-center">
-              <div className="flex-grow space-y-[0.5rem]">
-                <h2 className="font-semibold">{type.title}</h2>
-                <p className="text-sm text-gray-500">{type.description}</p>
+              <div className="flex-grow space-y-2">
+                <h2 className="body-1">{type.title}</h2>
+                <p className="body-3 text-gray-500">{type.description}</p>
               </div>
-              {selectedTypes.includes(type.id) ? (
-                <div className="w-[1.5rem] h-[1.5rem] bg-black rounded-[0.75rem] p-[0.12rem]">
-                  <Image
-                    src={IsChecked}
-                    alt={'checked'}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              ) : (
-                <div className="w-[1.5rem] h-[1.5rem] bg-gray-100 rounded-[0.75rem] p-[0.12rem]">
-                  <Image
-                    src={IsNotChecked}
-                    alt={'not checked'}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              )}
+
+              <Image
+                src={selectedTypes.includes(type.id) ? IsChecked : IsNotChecked}
+                alt={selectedTypes.includes(type.id) ? 'checked' : 'notChecked'}
+                width={24}
+                height={24}
+                className={
+                  selectedTypes.includes(type.id)
+                    ? 'bg-black rounded-full'
+                    : 'bg-gray-100 rounded-full'
+                }
+              />
             </div>
           </div>
         ))}
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4">
-        <div className="flex w-full max-w-md mx-4 ">
-          <Link
-            href={
-              selectedTypes.length > 0
-                ? `/select-mood?type=${selectedTypes.join(',')}`
-                : '#'
-            }
-            className={
-              selectedTypes.length > 0
-                ? 'btn-primary body-3 w-full lg:mx-4 md:mx-4 sm:mx-4'
-                : 'btn-default body-3 pointer-events-none w-full lg:mx-4 md:mx-4 sm:mx-4'
-            }
-          >
-            다음
-          </Link>
-        </div>
+
+      <div className="btn-container">
+        <Link
+          href={
+            selectedTypes.length > 0
+              ? `/select-mood?type=${selectedTypes.join(',')}`
+              : '#'
+          }
+          className={
+            selectedTypes.length > 0
+              ? 'btn-primary body-3'
+              : 'btn-default body-3 pointer-events-none'
+          }
+        >
+          다음으로
+        </Link>
       </div>
     </div>
   );

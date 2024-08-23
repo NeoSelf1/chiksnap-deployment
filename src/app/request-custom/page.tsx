@@ -1,67 +1,57 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import Image from 'next/image';
-import ArrowBack from '@/data/arrowLeft.svg';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '../api/apis';
+import PopupWindow from '@/components/PopupWindow';
+import { handlePhoneNumberChange } from '@/lib/utils';
+import { LoadingIndicator } from '@/lib/svgs';
 
 const RequestCustom = () => {
   const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
 
   const [text, setText] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  const isOverLimit = text.length > 600;
+  const isTextEntered = text.length > 0;
+  const isPhoneNumberEntered = phoneNumber.trim().length > 12;
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const isOverLimit = text.length > 600;
-  const isTextEntered = text.length > 0;
-  const isPhoneNumberEntered = phoneNumber.trim().length > 0;
-
   const handleSubmit = async () => {
-    console.log(phoneNumber);
-    console.log(text);
     if (!isPhoneNumberEntered) return;
-
     setLoading(true);
 
     try {
       await submitForm({ phone_number: phoneNumber, prefer_style: text });
-
-      alert('요청이 성공적으로 전송되었습니다.');
-      router.push('/');
     } catch (error) {
       console.error('실패: ', error);
       alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
     } finally {
+      setIsModalOpen(true);
       setLoading(false);
     }
   };
 
+  const onClose = () => {
+    setIsModalOpen(false);
+    router.push('/');
+  };
+
   return (
-    <div className="relative flex flex-col mx-[1rem] mt-[3.5rem]">
-      <div className="cursor-pointer" onClick={backFunction}>
-        <div className="flex w-[1.5rem] h-[1.5rem] my-[0.75rem]">
-          <Image src={ArrowBack} alt="Back" objectFit="cover" />
-        </div>
-      </div>
-      <h2 className="title-1 mt-[0.62rem] mb-[0.25rem]">
-        맞춤형 작가 요청하기
-      </h2>
-      <h3 className="body-3 text-gray-500 mb-[1.75rem]">
-        칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요. 약 1~3일
-        정도 소요될 수 있어요.
+    <div className="relative flex flex-col mx-4 mb-24">
+      <h2 className="title-1 mt-2">맞춤형 작가 요청해보세요.</h2>
+
+      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+        {`칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요.
+        약 1~3일 정도 소요될 수 있어요!`}
       </h3>
+
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">
           <h2 className="body-1">전화번호</h2>
@@ -72,7 +62,7 @@ const RequestCustom = () => {
             type="text"
             placeholder="XXX - XXXX - XXXX"
             value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            onChange={(e) => handlePhoneNumberChange(e, setPhoneNumber)}
             className="w-full h-[3.125rem] px-[0.875rem] bg-gray-50 rounded-lg body-1 placeholder-gray-300
             hover:bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:ring-0 focus:outline-none
             border border-transparent transition-colors duration-200
@@ -84,7 +74,7 @@ const RequestCustom = () => {
         <h2 className="body-1">희망하는 작가님 스타일 (분위기, 종류 등)</h2>
         <div className="mb-[1.75rem]">
           <textarea
-            placeholder="예) 따뜻한 분위기의 숲속에서 찍는 스타일, "
+            placeholder="예) 따뜻한 색감, 필름카메라 느낌"
             className={`flex w-full min-h-[13rem] p-[0.875rem] rounded-lg body-3 placeholder-gray-300 resize-none  bg-gray-50
             ${
               isOverLimit
@@ -110,21 +100,30 @@ const RequestCustom = () => {
           </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex justify-center py-4 cursor-pointer">
-        <div className="flex w-full max-w-md mx-4">
-          <button
-            onClick={handleSubmit}
-            disabled={!isPhoneNumberEntered || loading}
-            className={`body-3 w-full text-center py-3 rounded-lg transition-colors duration-200 lg:mx-4 md:mx-4 sm:mx-4 ${
-              isPhoneNumberEntered
-                ? 'btn-primary'
-                : 'btn-default pointer-events-none'
-            } ${loading ? 'opacity-50' : ''}`}
-          >
-            요청하기
-          </button>
-        </div>
+
+      <div className="btn-container">
+        <button
+          onClick={handleSubmit}
+          disabled={!isPhoneNumberEntered || !isTextEntered || loading}
+          className={
+            isPhoneNumberEntered && isTextEntered
+              ? 'btn-primary body-3 flex justify-center items-center'
+              : 'btn-default pointer-events-none body-3'
+          }
+        >
+          {loading ? <LoadingIndicator /> : '요청하기'}
+        </button>
       </div>
+
+      <PopupWindow
+        isOpen={isModalOpen}
+        onClose={onClose}
+        message={{
+          title: '작가 요청이 완료되었어요!',
+          body: `회원님만을 위한 맞춤형 작가를 찾아 연락드릴게요.
+조금만 기다려주세요.`,
+        }}
+      />
     </div>
   );
 };
