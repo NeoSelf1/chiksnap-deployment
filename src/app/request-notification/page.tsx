@@ -9,9 +9,6 @@ import { useRouter } from 'next/navigation';
 
 const RequestNotification = () => {
   const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
 
   const [phoneNumber, setPhoneNumber] = useState<string>('');
 

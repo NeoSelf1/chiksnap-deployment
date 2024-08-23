@@ -1,16 +1,11 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-import Image from 'next/image';
-import ArrowBack from '@/data/arrowLeft.svg';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '../api/apis';
 
 const RequestCustom = () => {
   const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
 
   const [text, setText] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');

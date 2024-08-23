@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { photographers_mu } from '@/data/database';
-import ArrowBack from '@/data/arrowLeft.svg';
 import Loading from '@/components/Loading';
 
 const RecommendedPhotographers = () => {
@@ -19,10 +18,6 @@ const RecommendedPhotographers = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
-  const backFunction = () => {
-    router.back();
-  };
 
   const searchParams = useSearchParams();
   const type = searchParams.get('type');

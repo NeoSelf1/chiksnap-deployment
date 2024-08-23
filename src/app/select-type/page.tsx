@@ -4,17 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { snapTypes } from '@/data/database';
-import ArrowBack from '@/data/arrowLeft.svg';
 import IsNotChecked from '@/data/grayCheck.svg';
 import IsChecked from '@/data/whiteCheck.svg';
-import { useRouter } from 'next/navigation';
 
 const SelectType = () => {
-  const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
-
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const handleSelectType = (typeId: string) => {

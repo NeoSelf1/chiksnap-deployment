@@ -10,11 +10,6 @@ import IsChecked from '@/data/whiteCheck.svg';
 import MoodImageGroup from '@/components/MoodImageGroup';
 
 const SelectMood = () => {
-  const router = useRouter();
-  const backFunction = () => {
-    router.back();
-  };
-
   const searchParams = useSearchParams();
   const type = searchParams.get('type');
   const [selectedMoods, setSelectedMoods] = useState<number[]>([]);
