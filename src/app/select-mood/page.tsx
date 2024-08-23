@@ -2,11 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { group1, group2, group3 } from '@/data/database';
-import ArrowBack from '@/data/arrowLeft.svg';
-import IsChecked from '@/data/whiteCheck.svg';
 import MoodImageGroup from '@/components/MoodImageGroup';
 
 const SelectMood = () => {
@@ -33,22 +30,6 @@ const SelectMood = () => {
             2<span className="text-gray-400">/2</span>
           </span>
         </div>
-      <div className="flex flex-row space-x-1 pb-[5rem]">
-        <MoodImageGroup
-          images={group1}
-          selectedMoods={selectedMoods}
-          toggleMood={toggleMood}
-        />
-        <MoodImageGroup
-          images={group2}
-          selectedMoods={selectedMoods}
-          toggleMood={toggleMood}
-        />
-        <MoodImageGroup
-          images={group3}
-          selectedMoods={selectedMoods}
-          toggleMood={toggleMood}
-        />
 
         <h3 className="body-3 text-gray-500 mt-1 whitespace-pre-line">
           {`선택하신 스냅의 분위기와 유사한 스타일의 
@@ -56,6 +37,24 @@ const SelectMood = () => {
         </h3>
       </div>
 
+      {/* 스크롤 가능한 이미지 섹션 */}
+      <div className="flex-grow px-4 mt-28 mb-20">
+        <div className="flex flex-row space-x-1 pb-4">
+          <MoodImageGroup
+            images={group1}
+            selectedMoods={selectedMoods}
+            toggleMood={toggleMood}
+          />
+          <MoodImageGroup
+            images={group2}
+            selectedMoods={selectedMoods}
+            toggleMood={toggleMood}
+          />
+          <MoodImageGroup
+            images={group3}
+            selectedMoods={selectedMoods}
+            toggleMood={toggleMood}
+          />
         </div>
       </div>
 

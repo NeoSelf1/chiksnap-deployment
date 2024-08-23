@@ -14,7 +14,7 @@ const RecommendedPhotographers = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2500); // 2.5초
+    }, 1500); // 2.5초
 
     return () => clearTimeout(timer);
   }, []);
@@ -43,13 +43,17 @@ const RecommendedPhotographers = () => {
         작가님이에요. 자세히 보기를 통해 작가님의 정보를 확인하고 그리던 사진을
         촬영해요
       </h3>
-      <div className="flex flex-col gap-[0.62rem] mb-[5rem]">
+
+      <div className="flex flex-col gap-[0.62rem]">
         {selectedPhotographers.map((photographer) => (
           <div
             key={photographer.id}
             className="flex flex-col w-full bg-gray-50 hover:bg-gray-100 p-[0.75rem] rounded-[0.5rem] cursor-pointer"
           >
-            <a href={`https://www.instagram.com/${photographer.instagramId}/`}>
+            <Link
+              target={'_blank'}
+              href={`https://www.instagram.com/${photographer.instagramId}`}
+            >
               <div className="flex flex-col w-full justify-center">
                 <div className="flex w-full mb-[0.63rem]">
                   <div className="flex relative w-[2.25rem] h-[2.25rem] mr-[0.62rem] rounded-[0.25rem]">
@@ -62,15 +66,18 @@ const RecommendedPhotographers = () => {
                       className="rounded-lg transition-transform duration-300 ease-in-out hover:scale-110"
                     />
                   </div>
+
                   <div className="flex items-center gap-[0.5rem]">
                     <span className="body-1 text-gray-900">
                       {photographer.name}
                     </span>
+
                     <span className="caption text-gray-600">
                       {`@${photographer.instagramId}`}
                     </span>
                   </div>
                 </div>
+
                 <div className="flex items-center gap-[0.25rem] mb-[0.62rem]">
                   <div className="caption px-[0.5rem] py-[0.25rem] bg-gray-200 rounded-[0.25rem]">
                     {photographer.price}
@@ -98,7 +105,7 @@ const RecommendedPhotographers = () => {
                   </div>
                 ))}
               </div>
-            </a>
+            </Link>
           </div>
         ))}
       </div>

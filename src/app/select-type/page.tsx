@@ -33,7 +33,8 @@ const SelectType = () => {
         {`찍고 싶은 스냅사진의 종류를 골라주세요.
         종류는 중복으로 선택할 수 있어요.`}
       </h3>
-      <div className="space-y-[1rem] w-full">
+
+      <div className="space-y-3 w-full">
         {snapTypes.map((type) => (
           <div
             key={type.id}
@@ -49,30 +50,24 @@ const SelectType = () => {
               height={200}
               className="mr-[0.25rem]"
             />
+
             <div className="p-[1rem] flex flex-row justify-between w-full place-items-center">
-              <div className="flex-grow space-y-[0.5rem]">
-                <h2 className="font-semibold">{type.title}</h2>
-                <p className="text-sm text-gray-500">{type.description}</p>
+              <div className="flex-grow space-y-2">
+                <h2 className="body-1">{type.title}</h2>
+                <p className="body-3 text-gray-500">{type.description}</p>
               </div>
-              {selectedTypes.includes(type.id) ? (
-                <div className="w-[1.5rem] h-[1.5rem] bg-black rounded-[0.75rem] p-[0.12rem]">
-                  <Image
-                    src={IsChecked}
-                    alt={'checked'}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              ) : (
-                <div className="w-[1.5rem] h-[1.5rem] bg-gray-100 rounded-[0.75rem] p-[0.12rem]">
-                  <Image
-                    src={IsNotChecked}
-                    alt={'not checked'}
-                    width={24}
-                    height={24}
-                  />
-                </div>
-              )}
+
+              <Image
+                src={selectedTypes.includes(type.id) ? IsChecked : IsNotChecked}
+                alt={selectedTypes.includes(type.id) ? 'checked' : 'notChecked'}
+                width={24}
+                height={24}
+                className={
+                  selectedTypes.includes(type.id)
+                    ? 'bg-black rounded-full'
+                    : 'bg-gray-100 rounded-full'
+                }
+              />
             </div>
           </div>
         ))}
