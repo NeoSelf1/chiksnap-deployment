@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { snapTypes } from '@/data/database';
+import { snapTypeChoice } from '@/data/database';
 import IsNotChecked from '@/data/grayCheck.svg';
 import IsChecked from '@/data/whiteCheck.svg';
 
 const SelectType = () => {
-  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [selectedTypes, setSelectedTypes] = useState<number[]>([]);
 
-  const handleSelectType = (typeId: string) => {
+  const handleSelectType = (typeId: number) => {
     if (selectedTypes.includes(typeId)) {
       // 이미 선택된 경우, 선택 해제
       setSelectedTypes(selectedTypes.filter((id) => id !== typeId));
@@ -35,13 +35,13 @@ const SelectType = () => {
       </h3>
 
       <div className="space-y-3 w-full">
-        {snapTypes.map((type) => (
+        {snapTypeChoice.map((type, index) => (
           <div
-            key={type.id}
+            key={index}
             className={`flex items-center bg-gray-50 rounded-lg cursor-pointer ${
-              selectedTypes.includes(type.id) ? 'ring-1 ring-black' : ''
+              selectedTypes.includes(index) ? 'ring-1 ring-black' : ''
             }`}
-            onClick={() => handleSelectType(type.id)}
+            onClick={() => handleSelectType(index)}
           >
             <Image
               src={type.image}
@@ -52,18 +52,15 @@ const SelectType = () => {
             />
 
             <div className="p-[1rem] flex flex-row justify-between w-full place-items-center">
-              <div className="flex-grow space-y-2">
-                <h2 className="body-1">{type.title}</h2>
-                <p className="body-3 text-gray-500">{type.description}</p>
-              </div>
+              <h2 className="flex-grow body-1">{type.title}</h2>
 
               <Image
-                src={selectedTypes.includes(type.id) ? IsChecked : IsNotChecked}
-                alt={selectedTypes.includes(type.id) ? 'checked' : 'notChecked'}
+                src={selectedTypes.includes(index) ? IsChecked : IsNotChecked}
+                alt={selectedTypes.includes(index) ? 'checked' : 'notChecked'}
                 width={24}
                 height={24}
                 className={
-                  selectedTypes.includes(type.id)
+                  selectedTypes.includes(index)
                     ? 'bg-black rounded-full'
                     : 'bg-gray-100 rounded-full'
                 }
@@ -75,6 +72,7 @@ const SelectType = () => {
 
       <div className="btn-container">
         <Link
+          prefetch
           href={
             selectedTypes.length > 0
               ? `/select-mood?type=${selectedTypes.join(',')}`

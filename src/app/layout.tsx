@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${pretendard.className} bg-gray-100 overflow-x-hidden`}>
+      <body className={`${pretendard.className} bg-white overflow-x-hidden`}>
         <ClipContainer>
           <main className="flex-grow overflow-y-auto">{children}</main>
         </ClipContainer>

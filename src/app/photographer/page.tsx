@@ -3,32 +3,92 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { photographers_mu } from '@/data/database';
+import { useSearchParams } from 'next/navigation';
 import Loading from '@/components/Loading';
+import { photoData, photographerData, snapTypeChoice } from '@/data/database';
+import { Photographer } from '@/types';
 
 const RecommendedPhotographers = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500); // 2.5초
-
-    return () => clearTimeout(timer);
-  }, []);
+  const [data, setData] = useState<any>([]);
 
   const searchParams = useSearchParams();
-  const type = searchParams.get('type');
-  const moods = searchParams.get('moods');
 
-  //type, price, moods 정보로 작가 추리는 로직 여기서 구현하고 바로 띄우면 될듯.
+  const processRecommendation = async () => {
+    const types = searchParams
+      .get('type')
+      ?.split(',')
+      .map((item: string) => +item);
+    const moods = searchParams
+      .get('moods')
+      ?.split(',')
+      .map((id: string) => photoData.find((item) => item.id === +id)?.mood)
+      .sort();
+    if (!types || !moods) return;
 
-  // 배열을 랜덤하게 섞고 처음 3명의 작가만 선택
-  const selectedPhotographers = [...photographers_mu]
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
+    const filteredPhotographerByType = photographerData.filter((item) =>
+      types.some((type: any) => item.types.includes(type)),
+    );
+
+    const photoMoodMap = new Map(
+      photoData.map((photo) => [photo.id, photo.mood]),
+    );
+
+    const photographerMoodCounts = filteredPhotographerByType.map(
+      (photographer) => {
+        // 모든 사진작가들에 대해,
+        const moodCounts = new Map<number, number>();
+        for (const imageId of photographer.works) {
+          //순회하는 사진작가 작품 이미지의 무드를
+          const mood = photoMoodMap.get(imageId);
+          if (mood !== undefined) {
+            // moodId,
+            moodCounts.set(mood, (moodCounts.get(mood) || 0) + 1);
+          }
+        }
+        return { photographer, moodCounts };
+      },
+    );
+
+    const moodSortedPhotographers = moods.map((mood) =>
+      [...photographerMoodCounts]
+        .sort(
+          (a, b) =>
+            (b.moodCounts.get(mood!) || 0) - (a.moodCounts.get(mood!) || 0),
+        )
+        .map((item) => item.photographer),
+    );
+
+    const selectedPhotographers = new Set<Photographer>();
+    const moodIndices = new Array(moods.length).fill(0);
+
+    while (selectedPhotographers.size < 3) {
+      for (let i = 0; i < moods.length; i++) {
+        if (moodIndices[i] < moodSortedPhotographers[i].length) {
+          const photographer = moodSortedPhotographers[i][moodIndices[i]];
+          selectedPhotographers.add(photographer);
+          moodIndices[i]++;
+          if (selectedPhotographers.size === 3) break;
+        }
+      }
+      if (
+        moodIndices.every(
+          (index, i) => index === moodSortedPhotographers[i].length,
+        )
+      )
+        break;
+    }
+    console.log(Array.from(selectedPhotographers));
+    setData(Array.from(selectedPhotographers));
+  };
+
+  useEffect(() => {
+    console.log('hello', data);
+    if (data.length === 0) {
+      processRecommendation();
+    }
+    setIsLoading(false);
+  }, []);
 
   if (isLoading) {
     return <Loading />; // 로딩 중일 때 로딩 컴포넌트 표시
@@ -45,20 +105,20 @@ const RecommendedPhotographers = () => {
       </h3>
 
       <div className="flex flex-col gap-[0.62rem]">
-        {selectedPhotographers.map((photographer) => (
+        {data.map((photographer: Photographer) => (
           <div
             key={photographer.id}
             className="flex flex-col w-full bg-gray-50 hover:bg-gray-100 p-[0.75rem] rounded-[0.5rem] cursor-pointer"
           >
             <Link
               target={'_blank'}
-              href={`https://www.instagram.com/${photographer.instagramId}`}
+              href={`https://www.instagram.com/${photographer.instagram_id}`}
             >
               <div className="flex flex-col w-full justify-center">
                 <div className="flex w-full mb-[0.63rem]">
                   <div className="flex relative w-[2.25rem] h-[2.25rem] mr-[0.62rem] rounded-[0.25rem]">
                     <Image
-                      src={photographer.profileImg}
+                      src={photographer.profile_image_url}
                       alt={photographer.name}
                       width={54}
                       height={54}
@@ -73,7 +133,7 @@ const RecommendedPhotographers = () => {
                     </span>
 
                     <span className="caption text-gray-600">
-                      {`@${photographer.instagramId}`}
+                      {`@${photographer.instagram_id}`}
                     </span>
                   </div>
                 </div>
@@ -82,28 +142,32 @@ const RecommendedPhotographers = () => {
                   <div className="caption px-[0.5rem] py-[0.25rem] bg-gray-200 rounded-[0.25rem]">
                     {photographer.price}
                   </div>
-                  {photographer.services.map((value, index) => (
+                  {photographer.types.map((typeId, index) => (
                     <div
                       key={index}
                       className="caption px-[0.5rem] py-[0.25rem] bg-white rounded-[0.25rem]"
                     >
-                      {value}
+                      {snapTypeChoice[typeId].title}
                     </div>
                   ))}
                 </div>
               </div>
               <div className="flex gap-[0.5rem]">
-                {photographer.workImages.map((value, index) => (
-                  <div key={index} className="relative w-1/3 h-[8.5rem]">
-                    <Image
-                      src={value}
-                      alt="example image"
-                      layout="fill"
-                      objectFit="cover"
-                      className="rounded-[0.25rem]"
-                    />
-                  </div>
-                ))}
+                {photographerData
+                  .find((item) => item.id === photographer.id)
+                  ?.works.slice(0, 3)
+                  .map((imageId, index) => (
+                    <div key={index} className="relative w-1/3 h-[8.5rem]">
+                      <Image
+                        src={
+                          photoData.find((item) => item.id === imageId)?.url!
+                        }
+                        alt="example image"
+                        layout="fill"
+                        className="rounded-[0.25rem] object-cover"
+                      />
+                    </div>
+                  ))}
               </div>
             </Link>
           </div>
