@@ -3,6 +3,7 @@
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { submitForm } from '../api/apis';
+import { handlePhoneNumberChange } from '@/lib/utils';
 
 const RequestCustom = () => {
   const router = useRouter();
@@ -15,11 +16,6 @@ const RequestCustom = () => {
     setText(e.target.value);
   };
 
-  const handlePhoneNumberChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  const isOverLimit = text.length > 600;
   const isTextEntered = text.length > 0;
   const isPhoneNumberEntered = phoneNumber.trim().length > 0;
 
@@ -61,7 +57,7 @@ const RequestCustom = () => {
             type="text"
             placeholder="XXX - XXXX - XXXX"
             value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            onChange={(e) => handlePhoneNumberChange(e, setPhoneNumber)}
             className="w-full h-[3.125rem] px-[0.875rem] bg-gray-50 rounded-lg body-1 placeholder-gray-300
             hover:bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:ring-0 focus:outline-none
             border border-transparent transition-colors duration-200

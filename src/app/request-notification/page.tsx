@@ -6,14 +6,31 @@ import Image from 'next/image';
 import Close from '@/data/close.svg';
 import Instagram from '@/data/instagram.svg';
 import { useRouter } from 'next/navigation';
+import { handlePhoneNumberChange } from '@/lib/utils';
+import { submitForm } from '../api/apis';
 
 const RequestNotification = () => {
   const router = useRouter();
 
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
+  const isPhoneNumberEntered = phoneNumber.trim().length > 12;
+
+  const handleSubmit = async () => {
+    if (!isPhoneNumberEntered) return;
+    setLoading(true);
+
+    try {
+      await submitForm({ phone_number: phoneNumber, prefer_style: '알림요청' });
+    } catch (error) {
+      console.error('실패: ', error);
+      alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
+    } finally {
+      setIsModalOpen(true);
+      setLoading(false);
+    }
   };
 
   const isPhoneNumberEntered = phoneNumber.trim().length > 0;
@@ -40,12 +57,13 @@ Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 �
           <h2 className="body-1">전화번호</h2>
           <h2 className="body-3 text-gray-500">*필수</h2>
         </div>
+
         <div className="mb-[1.75rem]">
           <input
             type="text"
             placeholder="XXX - XXXX - XXXX"
             value={phoneNumber}
-            onChange={handlePhoneNumberChange}
+            onChange={(e) => handlePhoneNumberChange(e, setPhoneNumber)}
             className="w-full h-[3.125rem] px-[0.875rem] bg-gray-50 rounded-lg body-1 placeholder-gray-300
             hover:bg-gray-100 focus:bg-gray-100 focus:border-gray-200 focus:ring-0 focus:outline-none
             border border-transparent transition-colors duration-200
