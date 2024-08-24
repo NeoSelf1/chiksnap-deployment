@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
 import ClipContainer from '@/components/ClipContainer';
+import { Analytics } from '@vercel/analytics/react';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ClipContainer>
           <main className="flex-grow overflow-y-auto">{children}</main>
         </ClipContainer>
+        <Analytics />
       </body>
     </html>
   );
