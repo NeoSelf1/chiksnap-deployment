@@ -1377,7 +1377,12 @@ export const photoData: SnapImage[] = [
     url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/usee_pic9%2BB6.png',
   },
 ];
+// mood를 기준으로 데이터 정렬
+const sortedData = photoData.sort((a, b) => a.mood - b.mood);
 
-export const images_personal = photoData.filter((item) => item.snap_type === 0);
-export const images_couple = photoData.filter((item) => item.snap_type === 1);
-export const images_wedding = photoData.filter((item) => item.snap_type === 2);
+// 3개의 배열로 분할
+export const arrangedPhotos: SnapImage[][] = [[], [], []];
+
+sortedData.forEach((item: SnapImage, index) => {
+  arrangedPhotos[index % 3].push(item);
+});

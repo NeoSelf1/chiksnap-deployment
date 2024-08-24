@@ -78,16 +78,18 @@ const RecommendedPhotographers = () => {
       )
         break;
     }
-    console.log(Array.from(selectedPhotographers));
     setData(Array.from(selectedPhotographers));
   };
 
   useEffect(() => {
-    console.log('hello', data);
     if (data.length === 0) {
       processRecommendation();
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
-    setIsLoading(false);
   }, []);
 
   if (isLoading) {
