@@ -58,7 +58,7 @@ const ClipContainer = ({ children }: any) => {
         </div>
 
         {path !== '/' && path !== '/request-notification' && (
-          <div className="bg-white px-4 h-[3.5rem] flex items-center border-b border-gray-50">
+          <div className="bg-white px-4 h-[3.5rem] flex items-center">
             <div className="cursor-pointer" onClick={() => router.back()}>
               <div className="flex w-[1.5rem] h-[1.5rem]">
                 <Image

@@ -1377,6 +1377,7 @@ export const photoData: SnapImage[] = [
     url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/usee_pic9%2BB6.png',
   },
 ];
+
 // mood를 기준으로 데이터 정렬
 const sortedData = photoData.sort((a, b) => a.mood - b.mood);
 
