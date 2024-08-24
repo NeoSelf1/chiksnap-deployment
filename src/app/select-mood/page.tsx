@@ -4,11 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import MoodImageGroup from '@/components/MoodImageGroup';
-import {
-  images_couple,
-  images_personal,
-  images_wedding,
-} from '@/data/database';
+import { arrangedPhotos } from '@/data/database';
 
 const SelectMood = () => {
   const searchParams = useSearchParams();
@@ -17,6 +13,7 @@ const SelectMood = () => {
   const [selectedMoods, setSelectedMoods] = useState<number[]>([]);
 
   const toggleMood = (id: number) => {
+    console.log(id);
     setSelectedMoods((prev) =>
       prev.includes(id)
         ? prev.filter((moodId) => moodId !== id)
@@ -46,17 +43,17 @@ const SelectMood = () => {
       <div className="flex-grow px-4 mt-28 mb-20">
         <div className="flex flex-row space-x-1 pb-4">
           <MoodImageGroup
-            images={images_personal}
+            images={arrangedPhotos[0]}
             selectedMoods={selectedMoods}
             toggleMood={toggleMood}
           />
           <MoodImageGroup
-            images={images_couple}
+            images={arrangedPhotos[1]}
             selectedMoods={selectedMoods}
             toggleMood={toggleMood}
           />
           <MoodImageGroup
-            images={images_wedding}
+            images={arrangedPhotos[2]}
             selectedMoods={selectedMoods}
             toggleMood={toggleMood}
           />
