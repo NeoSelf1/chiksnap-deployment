@@ -26,11 +26,11 @@ const RequestNotification = () => {
 
     try {
       await submitForm({ phone_number: phoneNumber, prefer_style: '알림요청' });
+      setIsModalOpen(true);
     } catch (error) {
       console.error('실패: ', error);
       alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
     } finally {
-      setIsModalOpen(true);
       setLoading(false);
     }
   };
