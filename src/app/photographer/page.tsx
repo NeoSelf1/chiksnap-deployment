@@ -119,7 +119,7 @@ const RecommendedPhotographers = () => {
           >
             <Link
               target={'_blank'}
-              href={`https://www.instagram.com/${photographer.instagram_id}`}
+              href={`/photographer/link-instagram?id=${photographer.instagram_id}`}
             >
               <div className="flex flex-col justify-center w-full">
                 <div className="flex w-full items-center space-x-2 mb-2.5">
