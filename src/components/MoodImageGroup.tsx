@@ -15,11 +15,11 @@ const MoodImageGroup = ({
   toggleMood,
 }: MoodImageGroupProps) => {
   return (
-    <div className="flex flex-col space-y-1 w-1/3">
+    <div className="flex flex-col w-1/3 space-y-1">
       {images.map((image) => (
         <div
           key={image.id}
-          className="relative cursor-pointer rounded-md overflow-hidden"
+          className="relative overflow-hidden cursor-pointer rounded-md"
           onClick={() => toggleMood(image.id)}
         >
           <Image
@@ -27,7 +27,7 @@ const MoodImageGroup = ({
             alt={image.id.toString()}
             width={200}
             height={200}
-            className="w-full h-auto object-cover"
+            className="object-cover w-full h-auto"
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(
               shimmer(120, 120),
@@ -35,7 +35,7 @@ const MoodImageGroup = ({
           />
 
           {selectedMoods.includes(image.id) && (
-            <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/70">
               <Image src={IsChecked} alt={'checked'} width={20} height={20} />
             </div>
           )}

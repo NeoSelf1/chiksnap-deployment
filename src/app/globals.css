@@ -28,16 +28,16 @@
     @apply h-[3rem] px-[1.5rem] py-[0.75rem] rounded-lg transition-colors duration-200 w-full text-center font-medium;
   }
   .btn-container {
-    @apply fixed bottom-0 left-1/2 transform -translate-x-1/2 flex justify-center bg-white p-4 max-w-md w-full;
+    @apply fixed bottom-0 flex justify-center w-full max-w-md p-4 transform -translate-x-1/2 bg-white left-1/2;
   }
   .btn-primary {
-    @apply btn bg-gray-800 text-white hover:bg-gray-700;
+    @apply text-white bg-gray-800 btn hover:bg-gray-700;
   }
   .btn-default {
-    @apply btn bg-gray-100 text-gray-900  hover:bg-gray-200;
+    @apply text-gray-900 bg-gray-100 btn hover:bg-gray-200;
   }
   .btn-selected {
-    @apply btn bg-gray-800 text-white;
+    @apply text-white bg-gray-800 btn;
   }
   .placeholder-gray-300::placeholder {
     color: #c1cbd8;

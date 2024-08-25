@@ -26,11 +26,11 @@ const RequestNotification = () => {
 
     try {
       await submitForm({ phone_number: phoneNumber, prefer_style: '알림요청' });
+      setIsModalOpen(true);
     } catch (error) {
       console.error('실패: ', error);
       alert('요청 전송에 실패했습니다. 다시 시도해주세요.');
     } finally {
-      setIsModalOpen(true);
       setLoading(false);
     }
   };
@@ -42,16 +42,15 @@ const RequestNotification = () => {
 
   return (
     <div className="relative flex flex-col mx-4 mb-24">
-      <div className="py-3 flex justify-end" onClick={() => router.back()}>
+      <div className="flex justify-end py-3" onClick={() => router.back()}>
         <Image
           src={Close}
           alt="Back"
-          className="flex w-[1.5rem] h-[1.5rem]"
-          style={{ objectFit: 'cover' }}
+          className="flex w-[1.5rem] h-[1.5rem] object-cover"
         />
       </div>
-      <h2 className="title-1 mt-2">칙스냅이 오픈되면, 알려드릴게요!</h2>
-      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+      <h2 className="mt-2 title-1">칙스냅이 오픈되면, 알려드릴게요!</h2>
+      <h3 className="mt-1 mb-6 text-gray-500 whitespace-pre-line body-3">
         {`안녕하세요, 순간을 Chik다. chiksnap입니다.
 Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 예정에 
 있습니다.
@@ -60,7 +59,7 @@ Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 �
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">
           <h2 className="body-1">전화번호</h2>
-          <h2 className="body-3 text-gray-500">*필수</h2>
+          <h2 className="text-gray-500 body-3">*필수</h2>
         </div>
 
         <div className="mb-[1.75rem]">
@@ -76,13 +75,18 @@ Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 �
           />
         </div>
       </div>
-      <div className="btn-container space-x-2">
+      <div className="space-x-2 btn-container">
         <Link
           target="_blank"
           href={`https://www.instagram.com/chik_snap/`}
-          className="btn-default flex justify-center space-x-1"
+          className="flex justify-center space-x-1 btn-default"
         >
-          <Image src={Instagram} width={24} alt="Instagram" objectFit="cover" />
+          <Image
+            src={Instagram}
+            width={24}
+            alt="Instagram"
+            className="object-cover"
+          />
           <h1 className="body-3">칙스냅에 문의하기</h1>
         </Link>
 
