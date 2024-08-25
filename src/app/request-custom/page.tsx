@@ -45,9 +45,9 @@ const RequestCustom = () => {
 
   return (
     <div className="relative flex flex-col mx-4 mb-24">
-      <h2 className="title-1 mt-2">맞춤형 작가 요청해보세요.</h2>
+      <h2 className="mt-2 title-1">맞춤형 작가 요청해보세요.</h2>
 
-      <h3 className="body-3 text-gray-500 mt-1 mb-6 whitespace-pre-line">
+      <h3 className="mt-1 mb-6 text-gray-500 whitespace-pre-line body-3">
         {`칙스냅에서 회원님에게 최적화된 작가분들을 찾아 추천해드릴게요.
         약 1~3일 정도 소요될 수 있어요!`}
       </h3>
@@ -55,7 +55,7 @@ const RequestCustom = () => {
       <div className="flex flex-col gap-[0.5rem]">
         <div className="flex justify-between">
           <h2 className="body-1">전화번호</h2>
-          <h2 className="body-3 text-gray-500">*필수</h2>
+          <h2 className="text-gray-500 body-3">*필수</h2>
         </div>
         <div className="mb-[1.75rem]">
           <input

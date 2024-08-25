@@ -9,15 +9,14 @@ const Home = () => {
         <Image
           src={BackgroundImage}
           alt="background"
-          layout="fill"
-          objectFit="cover"
+          fill
           quality={100}
-          className="pointer-events-none"
+          className="object-cover pointer-events-none"
         />
       </div>
 
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/80 via-black/70 to-transparent" />
-      <div className="relative z-20 h-full flex flex-col justify-between">
+      <div className="relative z-20 flex flex-col justify-between h-full">
         <div className="pl-[1.25rem]">
           <h1 className="body-2 mt-[6.94rem] mb-[0.64rem] text-white">
             순간을 Chik다,
