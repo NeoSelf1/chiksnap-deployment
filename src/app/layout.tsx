@@ -3,6 +3,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import ClipContainer from '@/components/ClipContainer';
 import { Analytics } from '@vercel/analytics/react';
+import RecoilContextProvider from '@/context/recoil-context';
 
 const pretendard = localFont({
   src: '../fonts/PretendardVariable.woff2',
@@ -24,10 +25,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${pretendard.className} bg-white overflow-x-hidden`}>
-        <ClipContainer>
-          <main className="flex-grow overflow-y-auto">{children}</main>
-        </ClipContainer>
-        <Analytics />
+        <RecoilContextProvider>
+          <ClipContainer>
+            <main className="flex-grow overflow-y-auto">{children}</main>
+            <Analytics />
+          </ClipContainer>
+        </RecoilContextProvider>
       </body>
     </html>
   );

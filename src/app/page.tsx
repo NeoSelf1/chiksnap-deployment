@@ -1,8 +1,32 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import BackgroundImage from '@/data/unsplash.png';
+import {
+  finalPhotographerIdsState,
+  photographersSortByMoodState,
+  previouslySelectedState,
+} from '@/context/recoil-context';
+import { useRecoilState } from 'recoil';
 
 const Home = () => {
+  const [photographersSortedByMood, setPhotographersSortedByMood] =
+    useRecoilState(photographersSortByMoodState);
+  const [previouslySelected, setPreviouslySelected] = useRecoilState(
+    previouslySelectedState,
+  );
+  const [finalPhotographerIds, setFinalPhotographerIds] = useRecoilState(
+    finalPhotographerIdsState,
+  );
+
+  const onclick = () => {
+    // recoil 전역변수값 초기화
+    setPhotographersSortedByMood([]);
+    setPreviouslySelected([]);
+    setFinalPhotographerIds([]);
+  };
+
   return (
     <div className="relative flex flex-col w-full h-screen p-[1rem]">
       <div className="absolute inset-0 z-0">
@@ -42,7 +66,11 @@ const Home = () => {
             </p>
           </div>
 
-          <Link href="/select-type" className="btn-default body-3">
+          <Link
+            onClick={onclick}
+            href="/select-type"
+            className="btn-default body-3"
+          >
             다음으로
           </Link>
         </div>
