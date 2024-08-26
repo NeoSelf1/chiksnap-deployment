@@ -120,7 +120,7 @@ export const photographerData: Photographer[] = [
     price: '16만원 -',
     profile_image_url:
       'https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/456619502_1156761368770192_1827335668555829915_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_cat=104&_nc_ohc=RSXDX6AdCK4Q7kNvgGp78WD&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AYBq7FeUCHZfKoOxyvY-WukYJ5ibK6Md4R7L0YEHjPeNAg&oe=66CE774D&_nc_sid=8b3546',
-    works: [22, 23, 24, 25, 26, 27, 28, 29],
+    works: [22, 23, 26, 27, 28],
     types: [0, 1],
   },
   {
@@ -498,20 +498,6 @@ export const photoData: SnapImage[] = [
     url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/ehoomarchive2%2BB1.png',
   },
   {
-    id: 24,
-    snap_type: 1,
-    photographer_id: 10,
-    mood: 1,
-    url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/ehoomarchive3%2BB1.png',
-  },
-  {
-    id: 25,
-    snap_type: 1,
-    photographer_id: 10,
-    mood: 1,
-    url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/ehoomarchive4%2BB1.png',
-  },
-  {
     id: 26,
     snap_type: 0,
     photographer_id: 10,
@@ -532,13 +518,7 @@ export const photoData: SnapImage[] = [
     mood: 2,
     url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/ehoomarchive7%2BA2.png',
   },
-  {
-    id: 29,
-    snap_type: 1,
-    photographer_id: 10,
-    mood: 1,
-    url: 'https://chik.s3.ap-northeast-2.amazonaws.com/photo/ehoomarchive8%2BB1.png',
-  },
+
   {
     id: 30,
     snap_type: 0,
