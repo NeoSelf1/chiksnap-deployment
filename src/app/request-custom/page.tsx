@@ -9,9 +9,10 @@ import { LoadingIndicator } from '@/lib/svgs';
 
 const RequestCustom = () => {
   const router = useRouter();
-
-  const [text, setText] = useState<string>('');
+  const [selectedTypes, setSelectedTypes] = useState<number[]>([]);
   const [phoneNumber, setPhoneNumber] = useState<string>('');
+  const [text, setText] = useState<string>('');
+
   const [loading, setLoading] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
@@ -23,10 +24,19 @@ const RequestCustom = () => {
     setText(e.target.value);
   };
 
+  const toggleType = (index: number) => {
+    setSelectedTypes((prevSelected) => {
+      if (prevSelected.includes(index)) {
+        return prevSelected.filter((i) => i !== index);
+      } else {
+        return [...prevSelected, index];
+      }
+    });
+  };
+
   const handleSubmit = async () => {
     if (!isPhoneNumberEntered) return;
     setLoading(true);
-
     try {
       await submitForm({ phone_number: phoneNumber, prefer_style: text });
       setIsModalOpen(true);
@@ -42,7 +52,7 @@ const RequestCustom = () => {
     setIsModalOpen(false);
     router.push('/');
   };
-
+  const tabs = ['개인 스냅', '우정 / 단체', '커플 / 결혼'];
   return (
     <div className="relative flex flex-col mx-4 mb-24">
       <h2 className="mt-2 title-1">맞춤형 작가 요청해보세요.</h2>
@@ -52,12 +62,31 @@ const RequestCustom = () => {
         약 1~3일 정도 소요될 수 있어요!`}
       </h3>
 
-      <div className="flex flex-col gap-[0.5rem]">
-        <div className="flex justify-between">
+      <div className="flex flex-col">
+        <div className="flex justify-between items-center">
+          <span className="body-1 text-gray-900">원하는 스낵 유형</span>
+          <h2 className="text-gray-500 body-3">복수선택 가능</h2>
+        </div>
+
+        <div className="flex space-x-2 mt-3">
+          {tabs.map((tab, index) => (
+            <button
+              onClick={() => toggleType(index)}
+              className={
+                selectedTypes.includes(index) ? 'tag-btn-selected' : ' tag-btn'
+              }
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <div className="flex justify-between mt-4">
           <h2 className="body-1">전화번호</h2>
           <h2 className="text-gray-500 body-3">*필수</h2>
         </div>
-        <div className="mb-[1.75rem]">
+
+        <div className="mt-2">
           <input
             type="text"
             placeholder="XXX - XXXX - XXXX"
@@ -70,9 +99,10 @@ const RequestCustom = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-[0.5rem]">
+
+      <div className="flex flex-col mt-4">
         <h2 className="body-1">희망하는 작가님 스타일 (분위기, 종류 등)</h2>
-        <div className="mb-[1.75rem]">
+        <div className="mt-2">
           <textarea
             placeholder="예) 따뜻한 색감, 필름카메라 느낌"
             className={`flex w-full min-h-[13rem] p-[0.875rem] rounded-lg body-3 placeholder-gray-300 resize-none  bg-gray-50
@@ -89,6 +119,7 @@ const RequestCustom = () => {
             value={text}
             onChange={handleTextChange}
           />
+
           <div className="flex justify-end">
             <p
               className={`caption text-gray-600 mt-[0.38rem] ${
@@ -104,9 +135,9 @@ const RequestCustom = () => {
       <div className="btn-container">
         <button
           onClick={handleSubmit}
-          disabled={!isPhoneNumberEntered || !isTextEntered || loading}
+          disabled={!isPhoneNumberEntered || loading}
           className={
-            isPhoneNumberEntered && isTextEntered
+            isPhoneNumberEntered
               ? 'btn-primary body-3 flex justify-center items-center'
               : 'btn-default pointer-events-none body-3'
           }
