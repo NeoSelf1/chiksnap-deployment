@@ -6,17 +6,19 @@ import weddingImg from '@/data/weddingSnap.png';
 
 export const snapTypeChoice = [
   {
+    old: '개인',
     title: '개인 / 일상',
     text: '화보, 프로필 사진 촬영',
     image: personalImg,
   },
   {
+    old: '커플 / 우정',
     title: '우정 / 단체',
     text: '2인 이상 촬영 ',
     image: coupleImg,
   },
   {
-    title: '커플 / 결혼',
+    title: '결혼',
     text: '야외, 웨딩 스냅 등 촬영 ',
     image: weddingImg,
   },
