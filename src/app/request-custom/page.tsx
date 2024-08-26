@@ -70,6 +70,7 @@ const RequestCustom = () => {
           />
         </div>
       </div>
+
       <div className="flex flex-col gap-[0.5rem]">
         <h2 className="body-1">희망하는 작가님 스타일 (분위기, 종류 등)</h2>
         <div className="mb-[1.75rem]">
@@ -104,9 +105,9 @@ const RequestCustom = () => {
       <div className="btn-container">
         <button
           onClick={handleSubmit}
-          disabled={!isPhoneNumberEntered || !isTextEntered || loading}
+          disabled={!isPhoneNumberEntered || loading}
           className={
-            isPhoneNumberEntered && isTextEntered
+            isPhoneNumberEntered
               ? 'btn-primary body-3 flex justify-center items-center'
               : 'btn-default pointer-events-none body-3'
           }
