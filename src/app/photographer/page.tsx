@@ -115,17 +115,6 @@ const RecommendedPhotographers = () => {
               >
                 <div className="flex flex-col justify-center w-full">
                   <div className="flex w-full items-center space-x-2 mb-2.5">
-                    <Image
-                      src={
-                        photographerData.find((p) => p.id === id)!
-                          .profile_image_url
-                      }
-                      alt={photographerData.find((p) => p.id === id)!.name}
-                      width={36}
-                      height={36}
-                      className="object-cover transition-transform duration-300 ease-in-out rounded-lg hover:scale-110"
-                    />
-
                     <span className="text-gray-900 body-1">
                       {photographerData.find((p) => p.id === id)!.name}
                     </span>
