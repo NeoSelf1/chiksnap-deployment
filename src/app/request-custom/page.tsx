@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { submitForm } from '../api/apis';
+import { recommendPhotographer } from '../api/apis';
 import PopupWindow from '@/components/PopupWindow';
 import { handlePhoneNumberChange } from '@/lib/utils';
 import { LoadingIndicator } from '@/lib/svgs';
@@ -38,7 +38,10 @@ const RequestCustom = () => {
     if (!isPhoneNumberEntered) return;
     setLoading(true);
     try {
-      await submitForm({ phone_number: phoneNumber, prefer_style: text });
+      await recommendPhotographer({
+        phone_number: phoneNumber,
+        prefer_style: text,
+      });
       setIsModalOpen(true);
     } catch (error) {
       console.error('실패: ', error);

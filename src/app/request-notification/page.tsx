@@ -8,7 +8,7 @@ import Close from '@/data/close.svg';
 import { useRouter } from 'next/navigation';
 import { handlePhoneNumberChange } from '@/lib/utils';
 import PopupWindow from '@/components/PopupWindow';
-import { submitForm } from '../api/apis';
+import { registerAlarm } from '../api/apis';
 import { LoadingIndicator } from '@/lib/svgs';
 
 const RequestNotification = () => {
@@ -25,7 +25,11 @@ const RequestNotification = () => {
     setLoading(true);
 
     try {
-      await submitForm({ phone_number: phoneNumber, prefer_style: '알림요청' });
+      await registerAlarm({
+        phone_number: phoneNumber,
+        service_name: '칙스냅',
+      });
+
       setIsModalOpen(true);
     } catch (error) {
       console.error('실패: ', error);
