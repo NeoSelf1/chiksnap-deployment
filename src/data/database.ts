@@ -18,6 +18,7 @@ export const snapTypeChoice = [
     image: coupleImg,
   },
   {
+    old: '결혼',
     title: '결혼',
     text: '야외, 웨딩 스냅 등 촬영 ',
     image: weddingImg,
@@ -223,7 +224,7 @@ export const photographerData: Photographer[] = [
     profile_image_url:
       'https://scontent-gmp1-1.cdninstagram.com/v/t51.2885-19/393298155_297390533108911_6093576485745995522_n.jpg?stp=dst-jpg_s150x150&_nc_ht=scontent-gmp1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=jkUhnZ0NP24Q7kNvgH9CY1m&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AYD-TTS1lCdEMKr7cQ2sxyP_olS5ZAqo1Ql9-D15ZXkXHw&oe=66CE5E16&_nc_sid=8b3546',
     works: [79, 80, 81, 82, 83, 84],
-    types: [0, 2],
+    types: [0, 1],
   },
   {
     id: 21,
