@@ -55,9 +55,8 @@ const RequestNotification = () => {
       </div>
       <h2 className="mt-2 title-1">칙스냅이 오픈되면, 알려드릴게요!</h2>
       <h3 className="mt-1 mb-6 text-gray-500 whitespace-pre-line body-3">
-        {`안녕하세요, 순간을 Chik다. chiksnap입니다.
-Chiksnap은 스냅사진작가를 추천해주는 플랫폼으로 10월 출시 예정에 
-있습니다.
+        {`안녕하세요, 순간을 Chik다 chiksnap입니다.
+Chiksnap은 원하는 분위기의 스냅작가님을 추천해주는 플랫폼으로 12월 출시 예정에 있습니다. 
 오픈 연락을 희망하신다면 아래 연락처를 남겨주세요 !`}
       </h3>
       <div className="flex flex-col gap-[0.5rem]">

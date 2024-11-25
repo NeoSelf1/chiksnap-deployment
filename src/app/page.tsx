@@ -60,7 +60,7 @@ const Home = () => {
             </h1>
 
             <p className="body-2 text-white mb-[3.25rem]">
-              나만을 위한, 내가 원하는 스타일에 맞는
+              내가 원하는 스타일에 맞는
               <br />
               작가를 칙스냅에서 찾아보세요
             </p>

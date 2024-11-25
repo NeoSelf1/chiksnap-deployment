@@ -95,9 +95,8 @@ const RecommendedPhotographers = () => {
       </div>
 
       <h3 className="mt-2 mb-6 text-gray-500 body-3 tracking-wide">
-        아래 작가분들은 여러분의 선택을 기반으로 칙스냅에서 추천드리는
-        작가님이에요. 작가분들의 더 많은 작업물을 보고싶다면 인스타그램 아이콘을
-        클릭해보세요.
+        여러분이 선택한 사진과 유사한 분위기의 사진을 찍는 작가님이에요.
+        작가분들의 더 많은 사진을 보고 싶다면 인스타그램 아이콘을 클릭해보세요
       </h3>
 
       <div className="flex flex-col gap-[0.62rem]">
