@@ -3,6 +3,7 @@ import axios from 'axios';
 interface RecommendPhotographerRequestData {
   phone_number: string;
   prefer_style: string;
+  snap_types: number[];
 }
 
 interface RegisterAlarmRequestData {

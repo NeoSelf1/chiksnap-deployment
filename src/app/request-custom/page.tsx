@@ -41,6 +41,7 @@ const RequestCustom = () => {
       await recommendPhotographer({
         phone_number: phoneNumber,
         prefer_style: text,
+        snap_types: selectedTypes,
       });
       setIsModalOpen(true);
     } catch (error) {
@@ -67,7 +68,7 @@ const RequestCustom = () => {
 
       <div className="flex flex-col">
         <div className="flex justify-between items-center">
-          <span className="body-1 text-gray-900">원하는 스낵 유형</span>
+          <span className="body-1 text-gray-900">원하는 스냅 유형</span>
           <h2 className="text-gray-500 body-3">복수선택 가능</h2>
         </div>
 
